@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eaglercraft Info</title>
+<meta name="description" content="A quick explainer on what Eaglercraft is: a browser-based port of classic Minecraft versions. Site under construction.">
+<style>
+  :root {
+    --bg: #f4f1ea;
+    --surface: #ffffff;
+    --text: #1f2421;
+    --muted: #5d6660;
+    --accent: #3d8c40;
+    --accent-ink: #ffffff;
+    --border: #d9d4c7;
+  }
+  :root[data-theme="dark"] {
+    --bg: #161a17;
+    --surface: #202622;
+    --text: #e8ece9;
+    --muted: #9aa59d;
+    --accent: #5fbf63;
+    --accent-ink: #0e140f;
+    --border: #333b35;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: background .2s, color .2s;
+  }
+  header, main, footer { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+  header { display: flex; justify-content: space-between; align-items: center; padding-top: 20px; padding-bottom: 8px; }
+  .logo { font-weight: 700; letter-spacing: .02em; }
+  .logo span { color: var(--accent); }
+  button { font: inherit; cursor: pointer; }
+  .icon-btn {
+    background: var(--surface); color: var(--text);
+    border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px;
+  }
+  .hero { padding: 40px 0 24px; }
+  .badge {
+    display: inline-block; font-size: .8rem; padding: 3px 10px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--muted);
+  }
+  h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; margin: 14px 0 10px; }
+  .lead { color: var(--muted); font-size: 1.1rem; max-width: 56ch; }
+  section { margin: 32px 0; }
+  h2 { font-size: 1.3rem; margin: 0 0 12px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 18px;
+  }
+  .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+  .tab {
+    background: transparent; color: var(--text);
+    border: 1px solid var(--border); border-radius: 8px; padding: 6px 14px;
+  }
+  .tab[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+  .tab:focus-visible, .icon-btn:focus-visible, .faq-q:focus-visible, .step-btn:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .panel[hidden] { display: none; }
+  .panel p { margin: 0 0 10px; }
+  .panel p:last-child { margin: 0; }
+
+  .steps-nav { display: flex; gap: 8px; margin-top: 14px; align-items: center; }
+  .step-btn {
+    background: var(--accent); color: var(--accent-ink); border: 0;
+    border-radius: 8px; padding: 8px 14px;
+  }
+  .step-btn[disabled] { opacity: .4; cursor: default; }
+  .progress { flex: 1; height: 6px; background: var(--border); border-radius: 99px; overflow: hidden; }
+  .progress > div { height: 100%; width: 0; background: var(--accent); transition: width .25s; }
+  .step-title { font-weight: 600; margin-bottom: 4px; }
+
+  .faq-item { border-top: 1px solid var(--border); }
+  .faq-item:first-child { border-top: 0; }
+  .faq-q {
+    width: 100%; text-align: left; background: none; border: 0; color: var(--text);
+    padding: 12px 0; display: flex; justify-content: space-between; gap: 12px; font-weight: 600;
+  }
+  .faq-q .chev { transition: transform .2s; color: var(--muted); }
+  .faq-q[aria-expanded="true"] .chev { transform: rotate(180deg); }
+  .faq-a { color: var(--muted); padding: 0 0 12px; }
+  .faq-a[hidden] { display: none; }
+
+  .note { font-size: .9rem; color: var(--muted); }
+  footer { padding-top: 16px; padding-bottom: 40px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">eagler<span>info</span></div>
+  <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">Dark mode</button>
+</header>
+
+<main>
+  <div class="hero">
+    <span class="badge">Under construction</span>
+    <h1>What is Eaglercraft?</h1>
+    <p class="lead">Eaglercraft is an unofficial project that ports older versions of Minecraft to run inside a web browser, with no installer and no Java required.</p>
+  </div>
+
+  <section aria-labelledby="overview-h">
+    <h2 id="overview-h">The basics</h2>
+    <div class="card">
+      <div class="tabs" role="tablist" aria-label="Overview topics">
+        <button class="tab" role="tab" id="t-what" aria-controls="p-what" aria-selected="true">What it is</button>
+        <button class="tab" role="tab" id="t-versions" aria-controls="p-versions" aria-selected="false" tabindex="-1">Versions</button>
+        <button class="tab" role="tab" id="t-multi" aria-controls="p-multi" aria-selected="false" tabindex="-1">Multiplayer</button>
+        <button class="tab" role="tab" id="t-legal" aria-controls="p-legal" aria-selected="false" tabindex="-1">Legal note</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-what" aria-labelledby="t-what">
+        <p>Eaglercraft takes Minecraft's Java Edition code and compiles it to JavaScript so it can run in a normal browser tab. That makes it popular on devices where installing software is difficult, such as locked-down school Chromebooks.</p>
+        <p>It was created by developers known as lax1dude and ayunami2000, and the name is a nod to the "Eagler" naming used across the project.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-versions" aria-labelledby="t-versions" hidden>
+        <p>Eaglercraft builds have historically targeted two older Java Edition versions:</p>
+        <p><strong>1.5.2</strong>: the original, lighter port.</p>
+        <p><strong>1.8.8</strong>: a later port with newer gameplay, such as the combat system many players prefer for PvP.</p>
+        <p class="note">Exact versions and features vary by build and fork.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-multi" aria-labelledby="t-multi" hidden>
+        <p>Browsers cannot open raw game connections, so Eaglercraft multiplayer works over WebSockets. Servers run a compatible proxy or plugin that translates between browser clients and the game server.</p>
+        <p>Some versions also support peer-to-peer "LAN" style worlds using WebRTC.</p>
+      </div>
+
+      <div class="panel" role="tabpanel" id="p-legal" aria-labelledby="t-legal" hidden>
+        <p>Eaglercraft is not made, endorsed, or supported by Mojang or Microsoft. Because it is derived from Minecraft's code, it has faced takedown requests in the past, and availability and legality can vary.</p>
+        <p>If you enjoy the game, buying an official copy of Minecraft supports the people who make it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="how-h">
+    <h2 id="how-h">How it works</h2>
+    <div class="card">
+      <div class="step-title" id="stepTitle"></div>
+      <div id="stepBody"></div>
+      <div class="steps-nav">
+        <button class="step-btn" id="prevBtn">Back</button>
+        <div class="progress" aria-hidden="true"><div id="bar"></div></div>
+        <button class="step-btn" id="nextBtn">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="faq-h">
+    <h2 id="faq-h">FAQ</h2>
+    <div class="card" id="faq"></div>
+  </section>
+</main>
+
+<footer>
+  <p>This is a placeholder informational page. It is an unofficial fan page and is not affiliated with Mojang, Microsoft, or the Eaglercraft developers. It does not host or distribute the game.</p>
+</footer>
+
+<script>
+(function () {
+  // Theme toggle
+  var root = document.documentElement;
+  var themeBtn = document.getElementById('themeBtn');
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  var prefersDark = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches;
+  function setTheme(t) {
+    root.setAttribute('data-theme', t);
+    themeBtn.textContent = t === 'dark' ? 'Light mode' : 'Dark mode';
+    try { localStorage.setItem('theme', t); } catch (e) {}
+  }
+  setTheme(saved || (prefersDark ? 'dark' : 'light'));
+  themeBtn.addEventListener('click', function () {
+    setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // Tabs
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+  function selectTab(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  }
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { selectTab(tab); });
+    tab.addEventListener('keydown', function (e) {
+      var n = null;
+      if (e.key === 'ArrowRight') n = tabs[(i + 1) % tabs.length];
+      if (e.key === 'ArrowLeft') n = tabs[(i - 1 + tabs.length) % tabs.length];
+      if (n) { selectTab(n); n.focus(); }
+    });
+  });
+
+  // Stepper
+  var steps = [
+    ['1. Start with the game code', 'The project begins with Minecraft Java Edition code from an older release.'],
+    ['2. Compile to the web', 'Tools translate the Java code into JavaScript and WebAssembly, which browsers can run directly.'],
+    ['3. Swap in browser APIs', 'Graphics use WebGL, input uses browser events, and saves go into browser storage instead of a game folder.'],
+    ['4. Add a network bridge', 'Multiplayer traffic is carried over WebSockets, with a proxy translating for the game server.'],
+    ['5. Open a tab and play', 'Everything loads as a web page, so there is nothing to install.']
+  ];
+  var idx = 0;
+  var title = document.getElementById('stepTitle');
+  var body = document.getElementById('stepBody');
+  var bar = document.getElementById('bar');
+  var prev = document.getElementById('prevBtn');
+  var next = document.getElementById('nextBtn');
+  function renderStep() {
+    title.textContent = steps[idx][0];
+    body.textContent = steps[idx][1];
+    bar.style.width = ((idx + 1) / steps.length * 100) + '%';
+    prev.disabled = idx === 0;
+    next.disabled = idx === steps.length - 1;
+  }
+  prev.addEventListener('click', function () { if (idx > 0) { idx--; renderStep(); } });
+  next.addEventListener('click', function () { if (idx < steps.length - 1) { idx++; renderStep(); } });
+  renderStep();
+
+  // FAQ accordion
+  var faqs = [
+    ['Is Eaglercraft the same as Minecraft?', 'No. It is an unofficial port based on older Minecraft Java Edition code, built to run in a browser. It lacks many features of the current official game.'],
+    ['Do I need to install anything?', 'No. The point of the project is that it runs in a normal modern browser.'],
+    ['Is it official or endorsed by Mojang?', 'No. It is a community project with no affiliation to Mojang or Microsoft.'],
+    ['Is it safe?', 'Because many unofficial copies and forks exist, quality and safety vary a lot. Be careful about where you get anything and avoid sites that ask for personal information.'],
+    ['Does this site host the game?', 'No. This is just an informational placeholder page.']
+  ];
+  var faqEl = document.getElementById('faq');
+  faqs.forEach(function (f, i) {
+    var item = document.createElement('div');
+    item.className = 'faq-item';
+    var q = document.createElement('button');
+    q.className = 'faq-q';
+    q.setAttribute('aria-expanded', 'false');
+    q.setAttribute('aria-controls', 'faq-a-' + i);
+    q.innerHTML = '<span></span><span class="chev" aria-hidden="true">&#9662;</span>';
+    q.firstChild.textContent = f[0];
+    var a = document.createElement('div');
+    a.className = 'faq-a';
+    a.id = 'faq-a-' + i;
+    a.hidden = true;
+    a.textContent = f[1];
+    q.addEventListener('click', function () {
+      var open = q.getAttribute('aria-expanded') === 'true';
+      q.setAttribute('aria-expanded', !open);
+      a.hidden = open;
+    });
+    item.appendChild(q);
+    item.appendChild(a);
+    faqEl.appendChild(item);
+  });
+})();
+</script>
+</body>
+</html>
